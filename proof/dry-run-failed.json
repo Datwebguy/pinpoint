@@ -1,0 +1,16 @@
+{
+  "project": "PINPOINT",
+  "liveProject": "Daydreams TaskMarket",
+  "taskId": "0xb609dec4ba3d3eca26761b019263935bf1c8b158d48a9e5f7346855b70c75c6d",
+  "workflowId": "o5a8dhop8bjoesbsgxio7",
+  "graphHash": "d6fc711d5f362863cdb756f625b2acf503f1caa50f82584b0e8bc70b2cfe42f9",
+  "validation": {
+    "ok": true,
+    "result": {
+      "valid": true,
+      "nodeCount": 2
+    }
+  },
+  "broadcast": false,
+  "error": "KeeperHub tool execute_transfer returned non-JSON content: API call failed: 400 Bad Request - {\"success\":false,\"status\":\"simulated\",\"from\":\"0x13c5d529ab7f3ea5279ee875b5422055072a8407\",\"to\":\"0x436326b6772851Ca8Bd84F27e48d77A8668b34Bd\",\"value\":\"200000000000000\",\"failureKind\":\"validation\",\"wouldRevert\":true,\"revertReason\":\"Insufficient BASE balance. Have: 0.0, Need: 0.0002. Fund 0x13c5d529ab7f3ea5279ee875b5422055072a8407 with at least 0.0002 BASE on this chain and retry.\",\"error\":\"Insufficient BASE balance. Have: 0.0, Need: 0.0002. Fund 0x13c5d529ab7f3ea5279ee875b5422055072a8407 with at least 0.0002 BASE on this chain and retry.\",\"code\":\"insufficient_balance\",\"balanceWei\":\"0\",\"requiredWei\":\"200000000000000\",\"shortfallWei\":\"200000000000000\",\"nativeSymbol\":\"BASE\",\"originalError\":\"missing revert data (action=\\\"call\\\", data=null, reason=null, transaction={ \\\"data\\\": \\\"0x\\\", \\\"from\\\": \\\"0x13c5d529ab7f3eA5279eE875b5422055072A8407\\\", \\\"to\\\": \\\"0x436326b6772851Ca8Bd84F27e48d77A8668b34Bd\\\" }, invocation=null, revert=null, code=CALL_EXCEPTION, version=6.17.0)\"}\n\nSimulation preflight failed. Nothing was signed or broadcast.\nStage: simulation preflight — the simulator attributed a machine-readable cause.\nReason: Insufficient BASE balance. Have: 0.0, Need: 0.0002. Fund 0x13c5d529ab7f3ea5279ee875b5422055072a8407 with at least 0.0002 BASE on this chain and retry.\nReason code: insufficient_balance (branch on this rather than the reason text)\nSimulated sender: 0x13c5d529ab7f3ea5279ee875b5422055072a8407\nSimulated call target: 0x436326b6772851Ca8Bd84F27e48d77A8668b34Bd\nNext step:\n  - The dry run resolves the sender to the organization wallet. If your org routes writes through a Safe, the broadcast spends from the Safe, so the sender above is not the account that pays — resolve the signer mode before acting on the reason.\n  - Fix the cause, then re-run the same arguments with simulate: true. Broadcast only once the dry run returns success: true and wouldRevert: false."
+}

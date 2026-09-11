@@ -1,0 +1,21 @@
+{
+  "name": "pinpoint",
+  "private": true,
+  "version": "0.1.0",
+  "description": "A reviewed KeeperHub execution boundary for live Daydreams agent jobs.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "compose": "tsx src/cli.ts compose",
+    "dry-run": "tsx src/cli.ts dry-run",
+    "execute": "tsx src/cli.ts execute",
+    "verify-invariant": "tsx src/cli.ts verify-invariant"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}

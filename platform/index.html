@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="PINPOINT turns a live Daydreams job into a reviewed KeeperHub execution and a public receipt.">
+  <title>PINPOINT / reviewed execution</title>
+  <style>
+    :root {
+      --paper: #f3f3ee;
+      --paper-2: #e8e9e2;
+      --ink: #131615;
+      --muted: #5b625d;
+      --line: #c9cec6;
+      --accent: #dd5b2d;
+      --accent-soft: #f5d7ca;
+      --ok: #28704a;
+      --surface-strong: #131615;
+      --mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      --sans: "Avenir Next", "Segoe UI", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); line-height: 1.68; }
+    a { color: inherit; }
+    a:hover { color: var(--accent); }
+    a:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
+    code, .mono { font-family: var(--mono); }
+    code { font-size: .9em; }
+    .shell { width: min(1240px, calc(100% - 64px)); margin: 0 auto; }
+    .topline { border-bottom: 1px solid var(--line); min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 28px; }
+    .brand { font-size: .8rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+    nav { display: flex; gap: 24px; color: var(--muted); font-size: .82rem; }
+    nav a { text-decoration: none; }
+    .hero { padding: clamp(100px, 15vh, 168px) 0 112px; max-width: 900px; }
+    .eyebrow { color: var(--accent); font-family: var(--mono); font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 28px; }
+    h1 { font-size: clamp(3.8rem, 8vw, 8rem); letter-spacing: -.09em; line-height: .94; max-width: 850px; margin: 0 0 38px; font-weight: 800; }
+    .hero-copy { max-width: 620px; font-size: clamp(1.18rem, 2.3vw, 1.5rem); line-height: 1.58; letter-spacing: -.02em; }
+    .hero-meta { margin-top: 46px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+    .status { display: inline-flex; align-items: center; gap: 8px; background: var(--ok); color: white; border-radius: 999px; padding: 8px 12px; font-family: var(--mono); font-size: .72rem; letter-spacing: .06em; }
+    .status::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #b7efca; }
+    .tag { border: 1px solid var(--line); border-radius: 999px; padding: 7px 11px; font-family: var(--mono); font-size: .72rem; color: var(--muted); }
+    .rule { border-top: 1px solid var(--ink); }
+    .section { padding: 128px 0; scroll-margin-top: 96px; }
+    .section-head { display: block; max-width: 800px; margin-bottom: 62px; }
+    .section-number { color: var(--accent); font-family: var(--mono); font-size: .78rem; margin-bottom: 20px; }
+    h2 { font-size: clamp(2.5rem, 5vw, 5rem); line-height: 1; letter-spacing: -.075em; margin: 0 0 24px; max-width: 800px; }
+    h3 { margin: 0 0 14px; font-size: 1.08rem; letter-spacing: -.02em; }
+    p { margin: 0; color: var(--muted); }
+    .lead { font-size: 1.18rem; line-height: 1.68; max-width: 660px; }
+    .flow { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr; gap: 16px; align-items: center; margin-bottom: 38px; }
+    .flow-node { display: grid; gap: 4px; }
+    .flow-node strong { font-size: .9rem; }
+    .flow-node span { color: var(--accent); font-family: var(--mono); font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; }
+    .flow-connector { width: 42px; height: 1px; background: var(--accent); transform-origin: left center; animation: draw-flow .7s cubic-bezier(.16, 1, .3, 1) both; }
+    .flow-connector:nth-of-type(2) { animation-delay: .18s; }
+    .flow-connector:nth-of-type(3) { animation-delay: .36s; }
+    .metrics { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); margin-bottom: 8px; }
+    .metric { padding: 28px 18px 30px 0; min-width: 0; }
+    .metric + .metric { border-left: 1px solid var(--line); padding-left: 16px; }
+    .metric-label { color: var(--muted); font-size: .76rem; text-transform: uppercase; letter-spacing: .08em; }
+    .metric-value { margin-top: 10px; font-size: 1rem; line-height: 1.45; overflow-wrap: anywhere; }
+    .chain { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 34px; }
+    .chain-step { position: relative; background: var(--paper-2); border: 1px solid var(--line); border-radius: 10px; padding: 34px 36px 38px; min-height: 250px; opacity: 0; transform: translateY(18px); animation: reveal-step .72s cubic-bezier(.16, 1, .3, 1) forwards; }
+    .chain-step:nth-child(2) { animation-delay: .12s; }
+    .chain-step:nth-child(3) { animation-delay: .24s; }
+    .chain-step:nth-child(4) { animation-delay: .36s; }
+    .step-no { color: var(--accent); font-family: var(--mono); font-size: .75rem; margin-bottom: 46px; }
+    .chain-step p { font-size: .96rem; line-height: 1.75; max-width: 48ch; }
+    .split { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .evidence-box { background: var(--paper-2); border: 1px solid var(--line); border-radius: 10px; padding: 34px; }
+    .hash { margin: 22px 0 0; font-size: .83rem; line-height: 1.8; overflow-wrap: anywhere; }
+    .hash-label { color: var(--muted); font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; }
+    .checks { margin-top: 30px; border-top: 1px solid var(--line); }
+    .check { display: flex; justify-content: space-between; gap: 20px; padding: 16px 0; border-bottom: 1px solid var(--line); font-size: .9rem; }
+    .check strong { color: var(--ok); font-family: var(--mono); font-size: .8rem; }
+    blockquote { border-left: 3px solid var(--accent); margin: 0 0 26px; padding: 5px 0 5px 22px; color: var(--ink); font-size: 1.08rem; line-height: 1.55; }
+    blockquote small { display: block; color: var(--muted); font-family: var(--mono); font-size: .72rem; margin-top: 10px; }
+    .ledger { border-top: 1px solid var(--line); }
+    .ledger-row { display: grid; grid-template-columns: 160px 1fr 120px; gap: 32px; padding: 28px 0; border-bottom: 1px solid var(--line); align-items: start; }
+    .ledger-time { font-family: var(--mono); color: var(--muted); font-size: .8rem; }
+    .ledger-title { font-weight: 700; margin-bottom: 8px; }
+    .ledger-copy { font-size: .95rem; line-height: 1.7; max-width: 65ch; }
+    .result { justify-self: end; font-family: var(--mono); font-size: .76rem; color: var(--ok); }
+    .result.fail { color: var(--accent); }
+    .receipt { background: var(--surface-strong); color: var(--paper); border-radius: 10px; padding: 42px; }
+    .receipt p, .receipt .hash-label { color: #b9c0b9; }
+    .receipt-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px 48px; margin-top: 34px; }
+    .receipt a { color: #ff9874; }
+    .receipt .hash { color: white; }
+    .button-link { display: inline-flex; margin-top: 34px; margin-right: 10px; color: var(--ink); background: var(--accent-soft); border-radius: 999px; padding: 11px 15px; text-decoration: none; font-family: var(--mono); font-size: .76rem; transition: transform .25s ease, background-color .25s ease; }
+    .button-link:hover { color: var(--ink); background: white; }
+    .button-link:active { transform: translateY(1px); }
+    .repro { display: grid; grid-template-columns: .85fr 1.15fr; gap: 72px; align-items: start; }
+    pre { margin: 0; background: var(--surface-strong); color: #e7eee5; border-radius: 10px; padding: 30px; overflow-x: auto; font: .78rem/1.9 var(--mono); }
+    .limitations { margin-top: 56px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px; }
+    .limitation { border-top: 2px solid var(--accent); padding-top: 18px; }
+    .limitation p { font-size: .92rem; line-height: 1.72; }
+    footer { border-top: 1px solid var(--ink); padding: 28px 0 36px; display: flex; justify-content: space-between; gap: 20px; color: var(--muted); font-size: .82rem; line-height: 1.6; }
+    @keyframes reveal-step { to { opacity: 1; transform: translateY(0); } }
+    @keyframes draw-flow { from { transform: scaleX(0); opacity: .2; } to { transform: scaleX(1); opacity: 1; } }
+    @keyframes draw-flow-mobile { from { transform: scaleY(0); opacity: .2; } to { transform: scaleY(1); opacity: 1; } }
+    @media (prefers-color-scheme: dark) {
+      :root { --paper: #151918; --paper-2: #202624; --ink: #f0f2ec; --muted: #aeb8b0; --line: #3a4440; --accent: #f07b4e; --accent-soft: #5c2f22; --ok: #5fbd82; --surface-strong: #0c0f0e; }
+      .receipt .hash { color: var(--paper); }
+      .button-link { color: var(--ink); }
+    }
+    @media (max-width: 800px) {
+      .shell { width: min(100% - 32px, 620px); }
+      .topline { align-items: flex-start; padding: 18px 0; flex-direction: column; gap: 12px; }
+      nav { flex-wrap: wrap; gap: 12px 16px; }
+      .hero { padding: 72px 0 74px; }
+      h1 { font-size: clamp(3.2rem, 16vw, 5.8rem); }
+      .section { padding: 84px 0; }
+      .section-head { margin-bottom: 42px; }
+      .split, .repro { grid-template-columns: 1fr; gap: 34px; }
+      .metrics { grid-template-columns: repeat(2, 1fr); }
+      .flow { grid-template-columns: 1fr; gap: 10px; margin-bottom: 26px; }
+      .flow-connector { width: 1px; height: 18px; margin-left: 7px; transform-origin: top center; animation-name: draw-flow-mobile; }
+      .metric:nth-child(3) { border-left: 0; padding-left: 0; border-top: 1px solid var(--line); }
+      .metric:nth-child(4) { border-top: 1px solid var(--line); }
+      .chain { grid-template-columns: 1fr; gap: 18px; }
+      .chain-step { min-height: 0; padding: 28px 26px 30px; }
+      .step-no { margin-bottom: 28px; }
+      .ledger-row { grid-template-columns: 1fr auto; gap: 10px 16px; padding: 24px 0; }
+      .ledger-copy { grid-column: 1 / -1; }
+      .result { grid-column: 2; grid-row: 1; }
+      .receipt { padding: 28px 24px; }
+      .receipt-grid, .limitations { grid-template-columns: 1fr; gap: 24px; }
+      pre { padding: 22px; }
+      footer { flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .chain-step { opacity: 1; transform: none; animation: none; }
+      .button-link { transition: none; }
+      .flow-connector { animation: none; opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="topline">
+      <div class="brand">PINPOINT / reviewed execution</div>
+      <nav aria-label="Page navigation">
+        <a href="#proof">Proof</a>
+        <a href="#lock">Graph lock</a>
+        <a href="#run">Run</a>
+        <a href="#reproduce">Reproduce</a>
+      </nav>
+    </header>
+    <main>
+      <section class="hero" aria-labelledby="page-title">
+        <div class="eyebrow">Reviewed execution for a live job</div>
+        <h1 id="page-title">The job is reviewed before the send</h1>
+        <p class="hero-copy">PINPOINT turns a live Daydreams job into a fixed KeeperHub workflow. You review the graph, KeeperHub sends it, and the receipt stays public.</p>
+        <div class="hero-meta">
+          <span class="status">BASE SEPOLIA RECEIPT</span>
+          <span class="tag">Daydreams task context</span>
+          <span class="tag">KeeperHub sends</span>
+        </div>
+      </section>
+      <div class="metrics" aria-label="Run summary">
+        <div class="metric"><div class="metric-label">Task</div><div class="metric-value"><a href="https://taskmarket.dev/tasks/0xb609dec4ba3d3eca26761b019263935bf1c8b158d48a9e5f7346855b70c75c6d">TaskMarket task</a></div></div>
+        <div class="metric"><div class="metric-label">Workflow</div><div class="metric-value mono">o5a8dhop8bjoesbsgxio7</div></div>
+        <div class="metric"><div class="metric-label">Execution</div><div class="metric-value mono">juhgnwr7s35g9gcz2u0gt</div></div>
+        <div class="metric"><div class="metric-label">Receipt</div><div class="metric-value"><a href="https://sepolia.basescan.org/tx/0xbf10dbd1fd4687a55de372f3f34a2687cbeaebd7523af7954eac1aa4359a172e">BaseScan tx</a></div></div>
+      </div>
+      <section class="section" id="proof" aria-labelledby="proof-title">
+        <div class="section-head">
+          <div class="section-number">The path</div>
+          <div><h2 id="proof-title">From task to receipt</h2><p class="lead">The path is short, and every step leaves a trace</p></div>
+        </div>
+        <div class="flow" aria-label="Flow from live brief to execution">
+          <div class="flow-node"><span>Context</span><strong>Task</strong></div>
+          <span class="flow-connector" aria-hidden="true"></span>
+          <div class="flow-node"><span>Commit</span><strong>Graph</strong></div>
+          <span class="flow-connector" aria-hidden="true"></span>
+          <div class="flow-node"><span>Check</span><strong>Dry run</strong></div>
+          <span class="flow-connector" aria-hidden="true"></span>
+          <div class="flow-node"><span>Receipt</span><strong>Transaction</strong></div>
+        </div>
+        <div class="chain">
+          <article class="chain-step"><div class="step-no">Context</div><h3>Live task</h3><p>A Daydreams task supplies the context. The transfer is a bounded action for its listed requester.</p></article>
+          <article class="chain-step"><div class="step-no">Commit</div><h3>Fixed graph</h3><p>The typed KeeperHub action fixes the chain, amount, and recipient before review.</p></article>
+          <article class="chain-step"><div class="step-no">Check</div><h3>Dry run</h3><p>KeeperHub validates the graph and simulates the transfer before anything is sent.</p></article>
+          <article class="chain-step"><div class="step-no">Receipt</div><h3>Execution</h3><p>KeeperHub sends the reviewed graph and returns the execution id and transaction receipt.</p></article>
+        </div>
+      </section>
+      <section class="section rule" id="lock" aria-labelledby="lock-title">
+        <div class="section-head">
+          <div class="section-number">The graph</div>
+          <div><h2 id="lock-title">A new prompt cannot rewrite the send</h2><p class="lead">The graph owns the limits, and the prompt does not</p></div>
+        </div>
+        <div class="split">
+          <div class="evidence-box">
+            <div class="hash-label">Executed graph hash</div>
+            <div class="hash mono">d6fc711d5f362863cdb756f625b2acf503f1caa50f82584b0e8bc70b2cfe42f9</div>
+            <div class="checks">
+              <div class="check"><span>Prompt change preserved graph</span><strong>true</strong></div>
+              <div class="check"><span>Tampered amount rejected</span><strong>true</strong></div>
+              <div class="check"><span>Verification broadcast</span><strong>false</strong></div>
+            </div>
+          </div>
+          <div>
+            <blockquote>“Use the reviewed task”<small>approved prompt</small></blockquote>
+            <blockquote>“Send everything”<small>changed prompt</small></blockquote>
+            <p>Both prompts resolve to the same graph. Changing the amount is rejected before execution.</p>
+          </div>
+        </div>
+      </section>
+      <section class="section rule" id="run" aria-labelledby="run-title">
+        <div class="section-head">
+          <div class="section-number">The run</div>
+          <div><h2 id="run-title">The system can refuse safely</h2><p class="lead">An unfunded wallet stopped the first attempt, and funding the same wallet allowed the same graph to pass</p></div>
+        </div>
+        <div class="ledger">
+          <div class="ledger-row"><div class="ledger-time">Balance</div><div><div class="ledger-title">No funds available</div><p class="ledger-copy">No Base Sepolia ETH was available, so nothing was sent.</p></div><div class="result fail">REFUSED</div></div>
+          <div class="ledger-row"><div class="ledger-time">Simulation</div><div><div class="ledger-title">The same graph passed</div><p class="ledger-copy">After funding, validation and typed simulation passed.</p></div><div class="result">PASSED</div></div>
+          <div class="ledger-row"><div class="ledger-time">Receipt</div><div><div class="ledger-title">KeeperHub sent once</div><p class="ledger-copy">One idempotent execution completed through the KeeperHub Turnkey wallet.</p></div><div class="result">SUCCESS</div></div>
+        </div>
+      </section>
+      <section class="section rule" aria-labelledby="receipt-title">
+        <div class="section-head">
+          <div class="section-number">The receipt</div>
+          <div><h2 id="receipt-title">The receipt is public</h2><p class="lead">The execution id and transaction hash are enough to trace this run</p></div>
+        </div>
+        <div class="receipt">
+          <div class="status">KEEPERHUB EXECUTION VERIFIED</div>
+          <div class="receipt-grid">
+            <div><div class="hash-label">Transaction</div><div class="hash mono"><a href="https://sepolia.basescan.org/tx/0xbf10dbd1fd4687a55de372f3f34a2687cbeaebd7523af7954eac1aa4359a172e">0xbf10dbd1fd4687a55de372f3f34a2687cbeaebd7523af7954eac1aa4359a172e</a></div></div>
+            <div><div class="hash-label">Block</div><div class="hash mono">46663858</div></div>
+            <div><div class="hash-label">Execution id</div><div class="hash mono">juhgnwr7s35g9gcz2u0gt</div></div>
+            <div><div class="hash-label">Workflow id</div><div class="hash mono">o5a8dhop8bjoesbsgxio7</div></div>
+            <div><div class="hash-label">Action</div><div class="hash mono">web3/transfer-funds</div></div>
+            <div><div class="hash-label">Value</div><div class="hash mono">0.0002 ETH / Base Sepolia</div></div>
+          </div>
+          <a class="button-link" href="https://sepolia.basescan.org/tx/0xbf10dbd1fd4687a55de372f3f34a2687cbeaebd7523af7954eac1aa4359a172e">Open transaction</a>
+          <a class="button-link" href="../proof/execution.json">Open execution record</a>
+          <a class="button-link" href="../proof/prompt-invariant.json">Open graph check</a>
+        </div>
+      </section>
+      <section class="section rule" id="reproduce" aria-labelledby="reproduce-title">
+        <div class="section-head">
+          <div class="section-number">Run it yourself</div>
+          <div><h2 id="reproduce-title">Use the same path</h2><p class="lead">Keep the key local, review the graph, then run the check and the execution</p></div>
+        </div>
+        <div class="repro">
+          <div><h3>Keep the key local</h3><p>Set <code>KEEPERHUB_API_KEY</code> in your shell and review the graph before execution. The graph check does not broadcast.</p></div>
+          <pre><code>npm install
+$env:KEEPERHUB_API_KEY = "kh_&lt;local-only&gt;"
+npm run compose
+
+$env:PINPOINT_WORKFLOW_ID = "o5a8dhop8bjoesbsgxio7"
+npm run verify-invariant
+npm run dry-run
+
+$env:PINPOINT_APPROVED = "1"
+npm run execute</code></pre>
+        </div>
+        <div class="limitations">
+          <div class="limitation"><h3>Workflow generation</h3><p>The typed action schema is the fallback when workflow generation is unavailable.</p></div>
+          <div class="limitation"><h3>Simulation</h3><p>Validation and typed simulation happen before the execution call.</p></div>
+          <div class="limitation"><h3>Network</h3><p>This receipt is on Base Sepolia, and it is not a TaskMarket reward settlement.</p></div>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <span>PINPOINT</span>
+      <span>Reviewed workflow and public receipt</span>
+    </footer>
+  </div>
+</body>
+</html>

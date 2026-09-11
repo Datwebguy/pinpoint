@@ -1,0 +1,282 @@
+{
+  "project": "PINPOINT",
+  "liveProject": "Daydreams TaskMarket",
+  "taskId": "0xb609dec4ba3d3eca26761b019263935bf1c8b158d48a9e5f7346855b70c75c6d",
+  "workflowId": "o5a8dhop8bjoesbsgxio7",
+  "executionId": "juhgnwr7s35g9gcz2u0gt",
+  "graphHash": "d6fc711d5f362863cdb756f625b2acf503f1caa50f82584b0e8bc70b2cfe42f9",
+  "txHash": "0xbf10dbd1fd4687a55de372f3f34a2687cbeaebd7523af7954eac1aa4359a172e",
+  "explorerUrl": "https://sepolia.basescan.org/tx/0xbf10dbd1fd4687a55de372f3f34a2687cbeaebd7523af7954eac1aa4359a172e",
+  "execution": {
+    "status": {
+      "status": "success",
+      "nodeStatuses": [
+        {
+          "nodeId": "manual-review",
+          "status": "success"
+        },
+        {
+          "nodeId": "fixed-proof-transfer",
+          "status": "success"
+        }
+      ],
+      "progress": {
+        "totalSteps": 2,
+        "completedSteps": 2,
+        "runningSteps": 0,
+        "currentNodeId": null,
+        "currentNodeName": null,
+        "percentage": 100
+      },
+      "errorContext": null,
+      "transactionHashes": [
+        {
+          "hash": "0xbf10dbd1fd4687a55de372f3f34a2687cbeaebd7523af7954eac1aa4359a172e",
+          "nodeId": "fixed-proof-transfer",
+          "chainId": 84532,
+          "gasUsed": "102107",
+          "nodeName": "Fixed Base Sepolia proof transfer",
+          "verified": true,
+          "verifiedAt": "2026-09-11T03:06:43.488Z",
+          "blockNumber": 46663858,
+          "receiptStatus": "success"
+        }
+      ]
+    },
+    "logs": {
+      "execution": {
+        "id": "juhgnwr7s35g9gcz2u0gt",
+        "workflowId": "o5a8dhop8bjoesbsgxio7",
+        "organizationId": "ce04edf5-8cf4-4d07-b6ad-545bda751a47",
+        "userId": "NjnClRnIs6Od4EJTUnc9ptOFMrZXYKMM",
+        "status": "success",
+        "input": {},
+        "output": {
+          "chainId": 84532,
+          "gasUsed": "612642000000",
+          "success": true,
+          "sponsored": true,
+          "gasUsedUnits": "102107",
+          "transactionHash": "0xbf10dbd1fd4687a55de372f3f34a2687cbeaebd7523af7954eac1aa4359a172e",
+          "transactionLink": "https://sepolia.basescan.org/tx/0xbf10dbd1fd4687a55de372f3f34a2687cbeaebd7523af7954eac1aa4359a172e",
+          "effectiveGasPrice": "6000000"
+        },
+        "error": null,
+        "errorCategory": null,
+        "errorType": null,
+        "errorCode": null,
+        "startedAt": "2026-09-11T03:06:40.658Z",
+        "completedAt": "2026-09-11T03:06:43.550Z",
+        "duration": "2789",
+        "totalSteps": "2",
+        "completedSteps": "2",
+        "currentNodeId": null,
+        "currentNodeName": null,
+        "lastSuccessfulNodeId": "fixed-proof-transfer",
+        "lastSuccessfulNodeName": "Fixed Base Sepolia proof transfer",
+        "executionTrace": [
+          "manual-review",
+          "fixed-proof-transfer"
+        ],
+        "runId": "wrun_01M276WZ56YH9P6NG0ZP30Q6B0",
+        "transactionHashes": [
+          {
+            "hash": "0xbf10dbd1fd4687a55de372f3f34a2687cbeaebd7523af7954eac1aa4359a172e",
+            "nodeId": "fixed-proof-transfer",
+            "chainId": 84532,
+            "gasUsed": "102107",
+            "nodeName": "Fixed Base Sepolia proof transfer",
+            "verified": true,
+            "verifiedAt": "2026-09-11T03:06:43.488Z",
+            "blockNumber": 46663858,
+            "receiptStatus": "success"
+          }
+        ],
+        "gasUsedWei": "612642000000",
+        "billable": true,
+        "triggeredByUserApiKeyId": null,
+        "triggeredByOrgApiKeyId": "pvgh4c8h3eormmljt69c9",
+        "triggeredByIp": null,
+        "triggeredByCountry": null,
+        "triggerSource": "manual",
+        "triggeredByCredentialType": "org_api_key",
+        "triggeredByCredentialLabel": null,
+        "executedWorkflowHash": "b45ef3634f7a36230994bca292a3c992bee75b3122e16a8e3e11dc3247976c3b",
+        "dispatchKey": null,
+        "deletedAt": null,
+        "workflow": {
+          "id": "o5a8dhop8bjoesbsgxio7",
+          "name": "PINPOINT — Daydreams TaskMarket bridge brief proof",
+          "description": "Live Daydreams TaskMarket task 0xb609dec4ba3d3eca26761b019263935bf1c8b158d48a9e5f7346855b70c75c6d (“Four Bridge Forms and Where Their Loads Go”, open, 2 USDC). After human review, this disabled workflow performs exactly one fixed typed KeeperHub web3/transfer-funds action on Base Sepolia: 0.0002 native ETH to the task requester. Dry-run is required before any execute.",
+          "userId": "NjnClRnIs6Od4EJTUnc9ptOFMrZXYKMM",
+          "organizationId": "ce04edf5-8cf4-4d07-b6ad-545bda751a47",
+          "isAnonymous": false,
+          "featured": false,
+          "featuredOrder": 0,
+          "featuredProtocol": null,
+          "featuredProtocolOrder": 0,
+          "projectId": null,
+          "tagId": null,
+          "nodes": [
+            {
+              "id": "manual-review",
+              "data": {
+                "type": "trigger",
+                "label": "Human-reviewed TaskMarket job",
+                "config": {
+                  "triggerType": "manual"
+                },
+                "status": "idle",
+                "description": "Manual trigger after the live Daydreams TaskMarket brief is reviewed."
+              },
+              "type": "trigger",
+              "position": {
+                "x": 80,
+                "y": 140
+              }
+            },
+            {
+              "id": "fixed-proof-transfer",
+              "data": {
+                "type": "action",
+                "label": "Fixed Base Sepolia proof transfer",
+                "config": {
+                  "amount": "0.0002",
+                  "network": "84532",
+                  "actionType": "web3/transfer-funds",
+                  "recipientAddress": "0x436326b6772851Ca8Bd84F27e48d77A8668b34Bd"
+                },
+                "status": "idle",
+                "description": "Fixed typed KeeperHub transfer: 0.0002 native ETH on Base Sepolia to the live TaskMarket requester. No runtime amount, chain, or recipient inputs."
+              },
+              "type": "action",
+              "position": {
+                "x": 420,
+                "y": 140
+              }
+            }
+          ],
+          "edges": [
+            {
+              "id": "manual-to-proof",
+              "source": "manual-review",
+              "target": "fixed-proof-transfer"
+            }
+          ],
+          "visibility": "private",
+          "enabled": false,
+          "sourceWorkflowId": null,
+          "createdAt": "2026-09-11T02:53:41.846Z",
+          "updatedAt": "2026-09-11T03:02:35.960Z",
+          "seededAt": null,
+          "isListed": false,
+          "listedSlug": null,
+          "listedAt": null,
+          "shareExecutionStatus": false,
+          "inputSchema": null,
+          "outputMapping": null,
+          "priceUsdcPerCall": null,
+          "workflowType": "read",
+          "category": null,
+          "chain": null,
+          "listingVersion": 1,
+          "deletedAt": null,
+          "deactivatedAt": null
+        }
+      },
+      "logs": [
+        {
+          "id": "5q4mtyukplkbrxttwlck8",
+          "executionId": "juhgnwr7s35g9gcz2u0gt",
+          "nodeId": "fixed-proof-transfer",
+          "nodeName": "Fixed Base Sepolia proof transfer",
+          "nodeType": "web3/transfer-funds",
+          "status": "success",
+          "input": {
+            "amount": "0.0002",
+            "network": "84532",
+            "condition": null,
+            "actionType": "web3/transfer-funds",
+            "_actionType": "web3/transfer-funds",
+            "conditionConfig": null,
+            "recipientAddress": "0x436326b6772851Ca8Bd84F27e48d77A8668b34Bd",
+            "recipientAddressLink": "https://sepolia.basescan.org/address/0x436326b6772851Ca8Bd84F27e48d77A8668b34Bd"
+          },
+          "output": {
+            "chainId": 84532,
+            "gasUsed": "612642000000",
+            "success": true,
+            "sponsored": true,
+            "gasUsedUnits": "102107",
+            "transactionHash": "0xbf10dbd1fd4687a55de372f3f34a2687cbeaebd7523af7954eac1aa4359a172e",
+            "transactionLink": "https://sepolia.basescan.org/tx/0xbf10dbd1fd4687a55de372f3f34a2687cbeaebd7523af7954eac1aa4359a172e",
+            "effectiveGasPrice": "6000000"
+          },
+          "outputRaw": {
+            "chainId": 84532,
+            "gasUsed": "612642000000",
+            "success": true,
+            "sponsored": true,
+            "gasUsedUnits": "102107",
+            "transactionHash": "0xbf10dbd1fd4687a55de372f3f34a2687cbeaebd7523af7954eac1aa4359a172e",
+            "transactionLink": "https://sepolia.basescan.org/tx/0xbf10dbd1fd4687a55de372f3f34a2687cbeaebd7523af7954eac1aa4359a172e",
+            "effectiveGasPrice": "6000000"
+          },
+          "error": null,
+          "startedAt": "2026-09-11T03:06:40.826Z",
+          "completedAt": "2026-09-11T03:06:43.418Z",
+          "duration": "2587",
+          "timestamp": "2026-09-11T03:06:40.826Z",
+          "iterationIndex": null,
+          "forEachNodeId": null,
+          "network": "84532",
+          "gasUsedWei": "612642000000",
+          "deletedAt": null
+        },
+        {
+          "id": "p8wg2l7pytpq0s93fusm0",
+          "executionId": "juhgnwr7s35g9gcz2u0gt",
+          "nodeId": "manual-review",
+          "nodeName": "Human-reviewed TaskMarket job",
+          "nodeType": "trigger",
+          "status": "success",
+          "input": {
+            "network": null,
+            "triggerData": {
+              "timestamp": 1789096000696,
+              "triggered": true,
+              "triggeredAt": "2026-09-11T03:06:40.696Z"
+            },
+            "triggerGasUsed": null
+          },
+          "output": {
+            "data": {
+              "timestamp": 1789096000696,
+              "triggered": true,
+              "triggeredAt": "2026-09-11T03:06:40.696Z"
+            },
+            "success": true
+          },
+          "outputRaw": {
+            "data": {
+              "timestamp": 1789096000696,
+              "triggered": true,
+              "triggeredAt": "2026-09-11T03:06:40.696Z"
+            },
+            "success": true
+          },
+          "error": null,
+          "startedAt": "2026-09-11T03:06:40.761Z",
+          "completedAt": "2026-09-11T03:06:40.768Z",
+          "duration": "2",
+          "timestamp": "2026-09-11T03:06:40.761Z",
+          "iterationIndex": null,
+          "forEachNodeId": null,
+          "network": null,
+          "gasUsedWei": null,
+          "deletedAt": null
+        }
+      ]
+    }
+  }
+}

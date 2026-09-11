@@ -1,0 +1,12 @@
+node_modules/
+.env
+.env.*
+!.env.example
+dist/
+*.log
+
+# Keep local project notes out of the public repository.
+*.md
+!/README.md
+
+# The completed proof is safe to publish because the execution is real and contains no secret.
