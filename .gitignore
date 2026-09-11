@@ -1,4 +1,5 @@
 node_modules/
+.vercel/
 .env
 .env.*
 !.env.example
@@ -10,3 +11,5 @@ dist/
 !/README.md
 
 # The completed proof is safe to publish because the execution is real and contains no secret.
+
+.vercel
