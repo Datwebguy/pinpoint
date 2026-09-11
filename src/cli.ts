@@ -1,6 +1,6 @@
-import { readLiveBrief } from "./live-brief.js";
+import { readLiveBrief, REQUESTER } from "./live-brief.js";
 import { KeeperHubMcp } from "./keeperhub-mcp.js";
-import { AMOUNT_ETH, assertPolicy, composeWorkflow, graphHash, type Workflow } from "./policy.js";
+import { AMOUNT_ETH, assertPolicy, CHAIN_ID, composeWorkflow, graphHash, type Workflow } from "./policy.js";
 import { explorerUrl, proofContext, writeJson } from "./proof.js";
 
 const command = process.argv[2] ?? "compose";
@@ -82,8 +82,8 @@ async function main(): Promise<void> {
     let simulation: unknown;
     try {
       simulation = await mcp.call("execute_transfer", {
-        chain_id: "84532",
-        to_address: "0x436326b6772851Ca8Bd84F27e48d77A8668b34Bd",
+        chain_id: CHAIN_ID,
+        to_address: REQUESTER,
         amount: AMOUNT_ETH,
         simulate: true,
       });

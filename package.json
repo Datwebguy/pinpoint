@@ -11,7 +11,9 @@
     "compose": "tsx src/cli.ts compose",
     "dry-run": "tsx src/cli.ts dry-run",
     "execute": "tsx src/cli.ts execute",
-    "verify-invariant": "tsx src/cli.ts verify-invariant"
+    "verify-invariant": "tsx src/cli.ts verify-invariant",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test src/policy.test.ts"
   },
   "devDependencies": {
     "@types/node": "^22.10.2",

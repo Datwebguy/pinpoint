@@ -1,4 +1,5 @@
 const MCP_URL = process.env.KEEPERHUB_MCP_URL ?? "https://app.keeperhub.com/mcp";
+const MCP_TIMEOUT_MS = 30_000;
 
 type Json = Record<string, unknown> | unknown[] | string | number | boolean | null;
 
@@ -68,7 +69,12 @@ export class KeeperHubMcp {
     };
     if (this.sessionId) headers["Mcp-Session-Id"] = this.sessionId;
 
-    const response = await fetch(this.url, { method: "POST", headers, body: JSON.stringify(body) });
+    const response = await fetch(this.url, {
+      method: "POST",
+      headers,
+      body: JSON.stringify(body),
+      signal: AbortSignal.timeout(MCP_TIMEOUT_MS),
+    });
     if (!response.ok) throw new Error(`KeeperHub MCP HTTP ${response.status}: ${await response.text()}`);
     return response;
   }

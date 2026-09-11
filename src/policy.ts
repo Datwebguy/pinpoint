@@ -72,13 +72,30 @@ export function composeWorkflow(task: TaskMarketTask): Workflow {
 export function assertPolicy(workflow: { nodes: WorkflowNode[]; edges: Workflow["edges"]; enabled?: boolean }): void {
   if (workflow.enabled) throw new Error("Policy violation: workflow must remain disabled until review");
   if (workflow.nodes.length !== 2 || workflow.edges.length !== 1) throw new Error("Policy violation: graph shape changed");
+  const trigger = workflow.nodes.find((node) => node.id === "manual-review");
   const action = workflow.nodes.find((node) => node.id === "fixed-proof-transfer");
   const config = action?.data.config;
+  if (
+    !trigger ||
+    trigger.type !== "trigger" ||
+    trigger.data.type !== "trigger" ||
+    trigger.data.status !== "idle" ||
+    trigger.data.config.triggerType !== "manual"
+  ) {
+    throw new Error("Policy violation: manual review trigger missing");
+  }
   if (!action || action.type !== "action" || config?.actionType !== "web3/transfer-funds") {
     throw new Error("Policy violation: typed transfer action missing");
   }
+  if (action.data.type !== "action" || action.data.status !== "idle") {
+    throw new Error("Policy violation: transfer action state changed");
+  }
   if (config.network !== CHAIN_ID || config.amount !== AMOUNT_ETH || config.recipientAddress !== REQUESTER) {
     throw new Error("Policy violation: chain, amount, or recipient changed");
+  }
+  const [edge] = workflow.edges;
+  if (!edge || edge.id !== "manual-to-proof" || edge.source !== "manual-review" || edge.target !== "fixed-proof-transfer") {
+    throw new Error("Policy violation: graph edge changed");
   }
   if (JSON.stringify(workflow).includes("{{")) throw new Error("Policy violation: dynamic template detected");
 }
