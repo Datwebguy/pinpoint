@@ -17,7 +17,7 @@ async function main(): Promise<void> {
       ? { id: existingId }
       : await mcp.call<{ id: string }>("create_workflow", {
           ...desired,
-          idempotency_key: "pinpoint-taskmarket-bridge-proof-20260911",
+          idempotency_key: `pinpoint-taskmarket-${task.id.slice(0, 10)}`,
         });
     const stored = await mcp.call<Workflow & { id: string }>("get_workflow", { workflowId: generated.id });
     assertPolicy(stored);
@@ -105,7 +105,7 @@ async function main(): Promise<void> {
 
   if (command === "execute") {
     if (process.env.PINPOINT_APPROVED !== "1") throw new Error("Set PINPOINT_APPROVED=1 only after reviewing the fixed graph and successful dry-run");
-    const result = await mcp.call<{ executionId: string }>("execute_workflow", { workflowId, idempotency_key: `pinpoint-${workflowId}-20260911` });
+    const result = await mcp.call<{ executionId: string }>("execute_workflow", { workflowId, idempotency_key: `pinpoint-${workflowId}-${Date.now()}` });
     const execution = await waitForExecution(result.executionId);
     const txHash = findTxHash(execution);
     await writeJson("proof/execution.json", {

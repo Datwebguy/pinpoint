@@ -20,7 +20,11 @@ This is a focused execution layer for paid agent work. It is not a consumer appl
 
 The live project used for this proof is [Daydreams TaskMarket](https://market.daydreams.systems/).
 
-The selected open task is [Four Bridge Forms and Where Their Loads Go](https://taskmarket.dev/tasks/0xb609dec4ba3d3eca26761b019263935bf1c8b158d48a9e5f7346855b70c75c6d). The task is a real content deliverable. It does not itself request an on chain transfer, so PINPOINT uses the task requester as the fixed recipient for a bounded proof action. This README does not claim that the transfer is a TaskMarket settlement.
+The selected live task is [Execute one bounded onchain action through KeeperHub](https://taskmarket.dev/tasks/0x935a2d3c8c949e8c58feacc6f9469142a1ad0d4a07c2922d0797bf2929a0a7b9) (task ID `0x935a2d3c8c949e8c58feacc6f9469142a1ad0d4a07c2922d0797bf2929a0a7b9`), published with escrow on Base Mainnet. The task brief explicitly requests:
+
+> *"Execute one bounded onchain action through KeeperHub. Send exactly 0.0002 native ETH on Base Sepolia from KeeperHub’s managed wallet to the requester address associated with this TaskMarket task. KeeperHub must be the only broadcaster..."*
+
+PINPOINT reads this live brief, composes the policy-checked KeeperHub workflow, validates and simulates off-chain, and executes the exact requested transfer to the requester (`0x75A0C2d1Df51C07982De3Ff031E5232518676B19`).
 
 ## The completed run
 
@@ -32,14 +36,14 @@ The selected open task is [Four Bridge Forms and Where Their Loads Go](https://t
   </tr>
   <tr>
     <td bgcolor="#e8f4ec"><strong>Amount</strong><br>0.0002 native ETH</td>
-    <td bgcolor="#e7efff"><strong>Workflow</strong><br><code>o5a8dhop8bjoesbsgxio7</code></td>
-    <td bgcolor="#fff0e9"><strong>Execution</strong><br><code>juhgnwr7s35g9gcz2u0gt</code></td>
+    <td bgcolor="#e7efff"><strong>Workflow</strong><br><code>w2hjt7ekrdc1lwl1grza6</code></td>
+    <td bgcolor="#fff0e9"><strong>Execution</strong><br><code>3evov6a25pybva45ad0so</code></td>
   </tr>
 </table>
 
-The transaction succeeded in block <code>46663858</code>.
+The transaction succeeded in block <code>46874941</code>.
 
-[Open the verified Base Sepolia receipt](https://sepolia.basescan.org/tx/0xbf10dbd1fd4687a55de372f3f34a2687cbeaebd7523af7954eac1aa4359a172e).
+[Open the verified Base Sepolia receipt](https://sepolia.basescan.org/tx/0x3ef851ae00647d28a2e0576216ce737abfefd22351e10afcc6c0dfb941ae4803).
 
 The complete machine readable receipt is [proof/execution.json](proof/execution.json). The prompt change check is [proof/prompt-invariant.json](proof/prompt-invariant.json). The composed workflow and dry run records are in the [proof directory](proof/).
 
@@ -51,7 +55,7 @@ The policy fixes the chain, the amount, and the recipient. It does not take thos
 
 The executed graph hash is:
 
-<code>d6fc711d5f362863cdb756f625b2acf503f1caa50f82584b0e8bc70b2cfe42f9</code>
+<code>e2aeae185049a3f04c231246720310471d4aa04597631b9cf0d018c231e82eff</code>
 
 The invariant check produced three useful facts.
 
@@ -105,7 +109,7 @@ npm run compose
 Review <code>proof/composed-workflow.json</code>. Set the returned workflow id and the approved graph hash:
 
 \`\`\`powershell
-$env:PINPOINT_WORKFLOW_ID = "o5a8dhop8bjoesbsgxio7"
+$env:PINPOINT_WORKFLOW_ID = "w2hjt7ekrdc1lwl1grza6"
 $env:PINPOINT_APPROVED_GRAPH_HASH = "<reviewed hash>"
 npm run dry-run
 \`\`\`
@@ -133,7 +137,7 @@ KeeperHub <code>ai_generate_workflow</code> intermittently returned <code>upstre
 
 The KeeperHub MCP catalog did not expose a workflow level dry run tool. PINPOINT therefore combines deep workflow validation with the typed transfer action simulation before execution.
 
-The proof is on Base Sepolia. The Daydreams task is live, but this transfer is a bounded proof action associated with its requester, not a claimed TaskMarket reward settlement.
+The task brief is published and escrowed live on Daydreams TaskMarket (Base Mainnet), and the requested micro-transfer action is executed on Base Sepolia as a bounded proof to the task requester.
 
 ## Surfaces used
 

@@ -1,13 +1,13 @@
 {
   "project": "PINPOINT",
   "liveProject": "Daydreams TaskMarket",
-  "taskId": "0xb609dec4ba3d3eca26761b019263935bf1c8b158d48a9e5f7346855b70c75c6d",
-  "workflowId": "o5a8dhop8bjoesbsgxio7",
-  "graphHash": "d6fc711d5f362863cdb756f625b2acf503f1caa50f82584b0e8bc70b2cfe42f9",
+  "taskId": "0x935a2d3c8c949e8c58feacc6f9469142a1ad0d4a07c2922d0797bf2929a0a7b9",
+  "workflowId": "w2hjt7ekrdc1lwl1grza6",
+  "graphHash": "e2aeae185049a3f04c231246720310471d4aa04597631b9cf0d018c231e82eff",
   "workflow": {
-    "id": "o5a8dhop8bjoesbsgxio7",
-    "name": "PINPOINT — Daydreams TaskMarket bridge brief proof",
-    "description": "Live Daydreams TaskMarket task 0xb609dec4ba3d3eca26761b019263935bf1c8b158d48a9e5f7346855b70c75c6d (“Four Bridge Forms and Where Their Loads Go”, open, 2 USDC). After human review, this disabled workflow performs exactly one fixed typed KeeperHub web3/transfer-funds action on Base Sepolia: 0.0002 native ETH to the task requester. Dry-run is required before any execute.",
+    "id": "w2hjt7ekrdc1lwl1grza6",
+    "name": "PINPOINT — Daydreams TaskMarket execution proof",
+    "description": "Live Daydreams TaskMarket task 0x935a2d3c8c949e8c58feacc6f9469142a1ad0d4a07c2922d0797bf2929a0a7b9 (“Execute one bounded onchain action through KeeperHub”, open, 0.01 USDC). After human review, this disabled workflow performs exactly one fixed typed KeeperHub web3/transfer-funds action on Base Sepolia: 0.0002 native ETH to the task requester. Dry-run is required before any execute.",
     "userId": "NjnClRnIs6Od4EJTUnc9ptOFMrZXYKMM",
     "organizationId": "ce04edf5-8cf4-4d07-b6ad-545bda751a47",
     "isAnonymous": false,
@@ -44,7 +44,7 @@
             "amount": "0.0002",
             "network": "84532",
             "actionType": "web3/transfer-funds",
-            "recipientAddress": "0x436326b6772851Ca8Bd84F27e48d77A8668b34Bd"
+            "recipientAddress": "0x75A0C2d1Df51C07982De3Ff031E5232518676B19"
           },
           "status": "idle",
           "description": "Fixed typed KeeperHub transfer: 0.0002 native ETH on Base Sepolia to the live TaskMarket requester. No runtime amount, chain, or recipient inputs."
@@ -66,8 +66,8 @@
     "visibility": "private",
     "enabled": false,
     "sourceWorkflowId": null,
-    "createdAt": "2026-09-11T02:53:41.846Z",
-    "updatedAt": "2026-09-11T03:02:35.960Z",
+    "createdAt": "2026-09-16T00:21:45.423Z",
+    "updatedAt": "2026-09-16T00:21:45.423Z",
     "seededAt": null,
     "isListed": false,
     "listedSlug": null,

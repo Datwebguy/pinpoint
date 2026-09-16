@@ -161,10 +161,10 @@
         </div>
       </section>
       <div class="metrics" aria-label="Run summary">
-        <div class="metric"><div class="metric-label">Task</div><div class="metric-value"><a href="https://taskmarket.dev/tasks/0xb609dec4ba3d3eca26761b019263935bf1c8b158d48a9e5f7346855b70c75c6d">TaskMarket task</a></div></div>
-        <div class="metric"><div class="metric-label">Workflow</div><div class="metric-value mono">o5a8dhop8bjoesbsgxio7</div></div>
-        <div class="metric"><div class="metric-label">Execution</div><div class="metric-value mono">juhgnwr7s35g9gcz2u0gt</div></div>
-        <div class="metric"><div class="metric-label">Receipt</div><div class="metric-value"><a href="https://sepolia.basescan.org/tx/0xbf10dbd1fd4687a55de372f3f34a2687cbeaebd7523af7954eac1aa4359a172e">BaseScan tx</a></div></div>
+        <div class="metric"><div class="metric-label">Task</div><div class="metric-value"><a href="https://taskmarket.dev/tasks/0x935a2d3c8c949e8c58feacc6f9469142a1ad0d4a07c2922d0797bf2929a0a7b9">TaskMarket task</a></div></div>
+        <div class="metric"><div class="metric-label">Workflow</div><div class="metric-value mono">w2hjt7ekrdc1lwl1grza6</div></div>
+        <div class="metric"><div class="metric-label">Execution</div><div class="metric-value mono">3evov6a25pybva45ad0so</div></div>
+        <div class="metric"><div class="metric-label">Receipt</div><div class="metric-value"><a href="https://sepolia.basescan.org/tx/0x3ef851ae00647d28a2e0576216ce737abfefd22351e10afcc6c0dfb941ae4803">BaseScan tx</a></div></div>
       </div>
       <section class="section" id="proof" aria-labelledby="proof-title">
         <div class="section-head">
@@ -195,7 +195,7 @@
         <div class="split">
           <div class="evidence-box">
             <div class="hash-label">Executed graph hash</div>
-            <div class="hash mono">d6fc711d5f362863cdb756f625b2acf503f1caa50f82584b0e8bc70b2cfe42f9</div>
+            <div class="hash mono">e2aeae185049a3f04c231246720310471d4aa04597631b9cf0d018c231e82eff</div>
             <div class="checks">
               <div class="check"><span>Prompt change preserved graph</span><strong>true</strong></div>
               <div class="check"><span>Tampered amount rejected</span><strong>true</strong></div>
@@ -228,14 +228,14 @@
         <div class="receipt">
           <div class="status">KEEPERHUB EXECUTION VERIFIED</div>
           <div class="receipt-grid">
-            <div><div class="hash-label">Transaction</div><div class="hash mono"><a href="https://sepolia.basescan.org/tx/0xbf10dbd1fd4687a55de372f3f34a2687cbeaebd7523af7954eac1aa4359a172e">0xbf10dbd1fd4687a55de372f3f34a2687cbeaebd7523af7954eac1aa4359a172e</a></div></div>
-            <div><div class="hash-label">Block</div><div class="hash mono">46663858</div></div>
-            <div><div class="hash-label">Execution id</div><div class="hash mono">juhgnwr7s35g9gcz2u0gt</div></div>
-            <div><div class="hash-label">Workflow id</div><div class="hash mono">o5a8dhop8bjoesbsgxio7</div></div>
+            <div><div class="hash-label">Transaction</div><div class="hash mono"><a href="https://sepolia.basescan.org/tx/0x3ef851ae00647d28a2e0576216ce737abfefd22351e10afcc6c0dfb941ae4803">0x3ef851ae00647d28a2e0576216ce737abfefd22351e10afcc6c0dfb941ae4803</a></div></div>
+            <div><div class="hash-label">Block</div><div class="hash mono">46874941</div></div>
+            <div><div class="hash-label">Execution id</div><div class="hash mono">3evov6a25pybva45ad0so</div></div>
+            <div><div class="hash-label">Workflow id</div><div class="hash mono">w2hjt7ekrdc1lwl1grza6</div></div>
             <div><div class="hash-label">Action</div><div class="hash mono">web3/transfer-funds</div></div>
             <div><div class="hash-label">Value</div><div class="hash mono">0.0002 ETH / Base Sepolia</div></div>
           </div>
-          <a class="button-link" href="https://sepolia.basescan.org/tx/0xbf10dbd1fd4687a55de372f3f34a2687cbeaebd7523af7954eac1aa4359a172e">Open transaction</a>
+          <a class="button-link" href="https://sepolia.basescan.org/tx/0x3ef851ae00647d28a2e0576216ce737abfefd22351e10afcc6c0dfb941ae4803">Open transaction</a>
           <a class="button-link" href="../proof/execution.json">Open execution record</a>
           <a class="button-link" href="../proof/prompt-invariant.json">Open graph check</a>
         </div>
@@ -251,7 +251,7 @@
 $env:KEEPERHUB_API_KEY = "kh_&lt;local-only&gt;"
 npm run compose
 
-$env:PINPOINT_WORKFLOW_ID = "o5a8dhop8bjoesbsgxio7"
+$env:PINPOINT_WORKFLOW_ID = "w2hjt7ekrdc1lwl1grza6"
 npm run verify-invariant
 npm run dry-run
 
@@ -261,7 +261,7 @@ npm run execute</code></pre>
         <div class="limitations">
           <div class="limitation"><h3>Workflow generation</h3><p>The typed action schema is the fallback when workflow generation is unavailable.</p></div>
           <div class="limitation"><h3>Simulation</h3><p>Validation and typed simulation happen before the execution call.</p></div>
-          <div class="limitation"><h3>Network</h3><p>This receipt is on Base Sepolia, and it is not a TaskMarket reward settlement.</p></div>
+          <div class="limitation"><h3>Network</h3><p>The task is published on Daydreams TaskMarket (Base Mainnet), and the micro-transfer proof executed on Base Sepolia.</p></div>
         </div>
       </section>
     </main>

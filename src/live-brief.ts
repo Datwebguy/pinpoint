@@ -1,6 +1,6 @@
 export const TASKMARKET_API = "https://api.taskmarket.dev";
-export const TASK_ID = "0xb609dec4ba3d3eca26761b019263935bf1c8b158d48a9e5f7346855b70c75c6d";
-export const REQUESTER = "0x436326b6772851Ca8Bd84F27e48d77A8668b34Bd";
+export const TASK_ID = "0x935a2d3c8c949e8c58feacc6f9469142a1ad0d4a07c2922d0797bf2929a0a7b9";
+export const REQUESTER = "0x75A0C2d1Df51C07982De3Ff031E5232518676B19";
 
 export type TaskMarketTask = {
   id: string;

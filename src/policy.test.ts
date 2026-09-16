@@ -3,10 +3,10 @@ import test from "node:test";
 import { AMOUNT_ETH, assertPolicy, composeWorkflow, graphHash } from "./policy.js";
 
 const task = {
-  id: "0xb609dec4ba3d3eca26761b019263935bf1c8b158d48a9e5f7346855b70c75c6d",
-  requester: "0x436326b6772851Ca8Bd84F27e48d77A8668b34Bd",
-  description: "Four Bridge Forms and Where Their Loads Go",
-  reward: "2000000",
+  id: "0x935a2d3c8c949e8c58feacc6f9469142a1ad0d4a07c2922d0797bf2929a0a7b9",
+  requester: "0x75A0C2d1Df51C07982De3Ff031E5232518676B19",
+  description: "Execute one bounded onchain action through KeeperHub",
+  reward: "10000",
   mode: "bounty",
   status: "open",
 };

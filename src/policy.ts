@@ -31,8 +31,8 @@ export function composeWorkflow(task: TaskMarketTask): Workflow {
   }
 
   return {
-    name: "PINPOINT — Daydreams TaskMarket bridge brief proof",
-    description: `Live Daydreams TaskMarket task ${TASK_ID} (“Four Bridge Forms and Where Their Loads Go”, open, 2 USDC). After human review, this disabled workflow performs exactly one fixed typed KeeperHub web3/transfer-funds action on Base Sepolia: 0.0002 native ETH to the task requester. Dry-run is required before any execute.`,
+    name: "PINPOINT — Daydreams TaskMarket execution proof",
+    description: `Live Daydreams TaskMarket task ${TASK_ID} (“Execute one bounded onchain action through KeeperHub”, open, 0.01 USDC). After human review, this disabled workflow performs exactly one fixed typed KeeperHub web3/transfer-funds action on Base Sepolia: 0.0002 native ETH to the task requester. Dry-run is required before any execute.`,
     nodes: [
       {
         id: "manual-review",
