@@ -143,34 +143,6 @@
       padding: 90px 0 60px;
       position: relative;
     }
-    .pill-live {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--status-success-bg);
-      border: 1px solid var(--status-success-border);
-      color: var(--status-success);
-      font-family: var(--font-mono);
-      font-size: 0.74rem;
-      font-weight: 600;
-      padding: 6px 14px;
-      border-radius: var(--radius-full);
-      margin-bottom: 24px;
-      letter-spacing: 0.06em;
-    }
-    .pulse-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--status-success);
-      box-shadow: 0 0 10px var(--status-success);
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
-      70% { transform: scale(1.1); box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
-      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
-    }
 
     h1 {
       font-size: clamp(2.4rem, 4.8vw, 4.2rem);
@@ -589,10 +561,6 @@
     
     <!-- Hero Section -->
     <section class="hero">
-      <div class="pill-live">
-        <span class="pulse-dot"></span>
-        VERIFIED ON-CHAIN · BASE SEPOLIA BLOCK 46874941
-      </div>
       <h1>A reviewed execution boundary between live AI agents and the chain.</h1>
       <p class="hero-lead">
         PINPOINT takes a live task brief from Daydreams TaskMarket, locks intent into a strictly typed KeeperHub workflow, validates off-chain, and executes exclusively through KeeperHub's Turnkey MPC wallet. Zero local private keys.
