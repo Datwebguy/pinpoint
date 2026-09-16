@@ -88,11 +88,11 @@ The local code never signs or broadcasts. There is no private key in this reposi
 
 ## One page evidence surface
 
-The repository includes a static judge-facing evidence surface deployed live at **[https://onpinpoint.vercel.app](https://onpinpoint.vercel.app)** (source at [platform/index.html](platform/index.html)).
+The repository includes a static, read-only evidence surface deployed live at **[https://onpinpoint.vercel.app](https://onpinpoint.vercel.app)** (source at [platform/index.html](platform/index.html)).
 
-It is inspired by the useful parts of the public [KeeperHub Flightcheck reference](https://keeperhub-flightcheck.timjosh507.workers.dev/): make the on-chain fact easy to inspect, show the failure and recovery path, preserve an independent receipt, and state the limits plainly.
+It presents the on-chain facts cleanly: making the execution receipts easy to inspect, detailing the preflight failure and recovery path, preserving an independent machine-readable audit trail, and stating the execution boundaries plainly.
 
-The page is not a wallet, a marketplace, a backend, or a transaction control panel. It is a concise evidence surface for this completed run.
+The page is not a wallet, a marketplace, a backend, or a transaction control panel. It is a concise, read-only verification surface for this completed run.
 
 ## Reproduce the flow
 
